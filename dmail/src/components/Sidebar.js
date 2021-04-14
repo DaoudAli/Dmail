@@ -12,7 +12,7 @@ function Sidebar() {
         Compose
       </Button>
 
-      {/* <SidebarOption Icon={<InboxIcon />} title="Inbox" number={54} /> */}
+      <SidebarOption Icon={InboxIcon} title="Inbox" number={54} />
     </div>
   );
 }

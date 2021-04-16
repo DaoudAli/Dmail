@@ -1,6 +1,6 @@
 .emailList {
   flex: 1;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .emailListSettings {
@@ -12,4 +12,13 @@
   border-bottom: 1px solid whitesmoke;
   z-index: 999;
   padding-right: 10px;
+}
+
+.emailListSections {
+  position: sticky;
+  top: 0;
+  display: flex;
+  background-color: white;
+  border-bottom: 1px solid whitesmoke;
+  z-index: 999;
 }

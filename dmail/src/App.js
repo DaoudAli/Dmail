@@ -4,12 +4,13 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Mail from "./components/Mail";
 import EmailList from "./components/EmailList";
+import ComposeMail from "./components/ComposeMail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="app">
         <Header />
         <div className="appbody">
           <Sidebar />
@@ -22,6 +23,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <ComposeMail />
       </div>
     </Router>
   );

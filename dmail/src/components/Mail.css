@@ -1,6 +1,7 @@
 .mail {
   flex: 1;
   background-color: whitesmoke;
+  height: 100%;
 }
 
 .mailTools {
@@ -20,7 +21,7 @@
   margin: 30px;
   background-color: white;
   padding: 20px;
-  height: 100vh;
+  height: 79%;
   box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.24);
 }
 

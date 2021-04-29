@@ -9,9 +9,11 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { useHistory } from "react-router-dom";
 import PrintIcon from "@material-ui/icons/Print";
 import LabelImportantIcon from "@material-ui/icons/LabelImportant";
-
+import { useSelector } from "react-redux";
+import { selectOpenMail } from "../features/mailSlice";
 function Mail() {
   const history = useHistory();
+  const selectedMail = useSelector(selectOpenMail);
   return (
     <div className="mail">
       <div className="mailTools">
@@ -50,13 +52,13 @@ function Mail() {
       </div>
       <div className="mailBody">
         <div className="mailBodyHeader">
-          <h2>sub</h2>
+          <h2>{selectedMail.subject}</h2>
           <LabelImportantIcon className="mailImportant" />
-          <p>Title</p>
-          <p className="mailTime">1pm</p>
+          <p>{selectedMail.title}</p>
+          <p className="mailTime">{selectedMail.time}</p>
         </div>
         <div className="mailMessage">
-          <p>This is a message</p>
+          <p>{selectedMail.message}</p>
         </div>
       </div>
     </div>

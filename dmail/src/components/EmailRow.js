@@ -5,10 +5,25 @@ import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { selectMail } from "../features/mailSlice";
 function EmailRow({ title, subject, description, time, id }) {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const openMail = () => {
+    dispatch(
+      selectMail({
+        title,
+        subject,
+        description,
+        time,
+        id,
+      })
+    );
+    history.push("/mail");
+  };
   return (
-    <div className="emailRow" onClick={() => history.push("/mail")}>
+    <div className="emailRow" onClick={openMail}>
       <div className="emailRowOptions">
         <Checkbox />
         <IconButton>

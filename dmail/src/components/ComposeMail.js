@@ -15,6 +15,12 @@ function ComposeMail() {
 
   const onSubmit = (data) => {
     console.log(data);
+
+    fetch("http://localhost:5000/send", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    });
   };
 
   const dispatch = useDispatch();

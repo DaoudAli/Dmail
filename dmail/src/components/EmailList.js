@@ -38,6 +38,49 @@ function EmailList() {
       </div>
 
       <div className="emailListRows">
+        <EmailRow
+          title="ali@dmail.com"
+          subject="hi"
+          description="how are you"
+          time="1:11pm"
+        />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
+        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
         <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
 
         <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />

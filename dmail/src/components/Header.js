@@ -11,7 +11,7 @@ function Header() {
         <IconButton>
           <MailOutlineIcon />
         </IconButton>
-        <h1>Dmail</h1>
+        <h1 className="title">Dmail</h1>
       </div>
 
       <div className="headerMiddle">

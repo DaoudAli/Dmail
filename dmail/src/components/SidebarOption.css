@@ -14,9 +14,9 @@
 .sidebarOption--active,
 .sidebarOption--active > p,
 .sidebarOption--active > h3 {
-  background-color: lightslategrey;
+  background-color: whitesmoke;
   color: black;
-  font-weight: 800 !important;
+  font-weight: 500 !important;
 }
 
 .icon {

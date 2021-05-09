@@ -3,8 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 export const mailSlice = createSlice({
   name: "mail",
   initialState: {
+    isLogged: false,
     selectedMail: null,
     sendMessageIsOpen: false,
+    inbox: [],
+    trash: [],
+    starred: [],
+    username: null,
   },
   reducers: {
     selectMail: (state, action) => {
@@ -16,6 +21,9 @@ export const mailSlice = createSlice({
     closeSendMessage: (state) => {
       state.sendMessageIsOpen = false;
     },
+    signIn: (state) => {
+      state.isLogged = true;
+    },
   },
 });
 
@@ -24,8 +32,10 @@ export const {
   selectMail,
   openSendMessage,
   closeSendMessage,
+  signIn,
 } = mailSlice.actions;
 
 export const selectSendMessageIsOpen = (state) => state.mail.sendMessageIsOpen;
 export const selectOpenMail = (state) => state.mail.selectedMail;
+export const selectIsLogged = (state) => state.mail.isLogged;
 export default mailSlice.reducer;

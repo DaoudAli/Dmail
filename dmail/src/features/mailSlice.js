@@ -10,6 +10,7 @@ export const mailSlice = createSlice({
     trash: [],
     starred: [],
     currentUser: null,
+    showMailType: "inbox",
   },
   reducers: {
     selectMail: (state, action) => {
@@ -30,6 +31,9 @@ export const mailSlice = createSlice({
     setCurrentUser: (state, action) => {
       state.currentUser = action.payload;
     },
+    setShowMailType: (state, action) => {
+      state.showMailType = action.payload;
+    },
   },
 });
 
@@ -41,10 +45,12 @@ export const {
   signIn,
   signOut,
   setCurrentUser,
+  setShowMailType,
 } = mailSlice.actions;
 
 export const selectSendMessageIsOpen = (state) => state.mail.sendMessageIsOpen;
 export const selectOpenMail = (state) => state.mail.selectedMail;
 export const selectIsLogged = (state) => state.mail.isLogged;
 export const selectCurrentUser = (state) => state.mail.currentUser;
+export const selectCurrentMailType = (state) => state.mail.showMailType;
 export default mailSlice.reducer;

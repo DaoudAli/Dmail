@@ -11,7 +11,7 @@ import {
 import SearchIcon from "@material-ui/icons/Search";
 import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signOut } from "../../src/features/mailSlice";
+import { setCurrentUser, signOut } from "../../src/features/mailSlice";
 function Header() {
   const [anchorElem, setAnchorElem] = useState(null);
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ function Header() {
   };
 
   const handleSignOut = () => {
+    dispatch(setCurrentUser(""));
     dispatch(signOut());
   };
 

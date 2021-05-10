@@ -24,6 +24,7 @@ const emailSchema = new Schema(
     time: String,
     sender: String,
     reciever: String,
+    type: String,
   },
   {
     collection: "emails",

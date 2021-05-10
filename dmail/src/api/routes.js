@@ -4,29 +4,51 @@ const { User, Email } = require("../../src/db/schemas");
 const router = express.Router();
 
 //Get inbox
-router.get("/inbox", (req, res) => {
-  //Load Username
-  //Load Emails for User
+router.post("/loadInbox", async (req, res) => {
+  const user = req.body.user;
+
+  await Email.find({}, (err, emails) => {
+    let inboxMails = [];
+    let trashMails = [];
+    let starredMails = [];
+    for (const email of emails) {
+      if (email.type === "inbox") {
+        inboxMails.push(email);
+      }
+      if (email.type === "trash") {
+        trashMails.push(email);
+      }
+      if (email.type === "starred") {
+        starredMails.push(email);
+      }
+    }
+    res.send({ inboxMails, trashMails, starredMails });
+  });
 });
 
 //Send email
 router.post("/send", async (req, res) => {
-  console.log("hii");
-  const mail = new Email({
+  const newMail = new Email({
     sender: req.body.sender,
     receiver: req.body.receiver,
     subject: req.body.subject,
     message: req.body.message,
-  });
-  //Check if reciever exists in DB
-  let query = { username: req.body.receiver };
-  await User.find(query, (err, results) => {
-    if (results === []) {
-      res.json({ foundUser: false });
-    }
+    time: req.body.time,
+    type: "inbox",
   });
 
-  //Check for recipent in DB
+  newMail.save();
+
+  //Check if reciever exists in DB
+  let query = { username: req.body.receiver };
+  await User.findOne(query, (err, user) => {
+    if (user === []) {
+      res.json({ foundUser: false });
+    } else {
+      user.mail.inbox.push(newMail._id);
+      user.save();
+    }
+  });
 });
 
 //Signup new user
@@ -41,6 +63,7 @@ router.post("/login", async (req, res) => {
 
   await User.find(query, async (err, results) => {
     console.log(results);
+
     if (!results.length) {
       res.json({ userFound: null });
     } else {

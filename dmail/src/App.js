@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar";
 import Mail from "./components/Mail";
 import EmailList from "./components/EmailList";
 import ComposeMail from "./components/ComposeMail";
-import Login from "./components/Login/Login";
+import Login from "./components/Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectSendMessageIsOpen, selectIsLogged } from "./features/mailSlice";

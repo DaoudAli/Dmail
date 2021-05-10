@@ -2,10 +2,10 @@ import React from "react";
 import "./Login.css";
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField";
-import signInAPI from "./api";
+import signInAPI from "./apis/loginAPI";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { signIn } from "../../features/mailSlice";
+import { signIn } from "../features/mailSlice";
 
 function Login() {
   const {
@@ -14,8 +14,13 @@ function Login() {
     formState: { errors },
   } = useForm();
 
+  const dispatch = useDispatch();
+
   const onSubmit = async (data) => {
-    await signInAPI(data).then((results) => console.log(results));
+    const signInSuccess = await signInAPI(data);
+    if (signInSuccess) {
+      dispatch(signIn());
+    }
   };
 
   return (

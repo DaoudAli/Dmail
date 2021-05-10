@@ -24,6 +24,9 @@ export const mailSlice = createSlice({
     signIn: (state) => {
       state.isLogged = true;
     },
+    signOut: (state) => {
+      state.isLogged = false;
+    },
   },
 });
 
@@ -33,6 +36,7 @@ export const {
   openSendMessage,
   closeSendMessage,
   signIn,
+  signOut,
 } = mailSlice.actions;
 
 export const selectSendMessageIsOpen = (state) => state.mail.sendMessageIsOpen;

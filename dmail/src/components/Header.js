@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
-import { Avatar, IconButton } from "@material-ui/core";
+import {
+  Avatar,
+  IconButton,
+  MenuList,
+  MenuItem,
+  Menu,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signOut } from "../../src/features/mailSlice";
 function Header() {
+  const [anchorElem, setAnchorElem] = useState(null);
+  const dispatch = useDispatch();
+  const handleClick = (event) => {
+    setAnchorElem(event.currentTarget);
+  };
+
+  const handleSignOut = () => {
+    dispatch(signOut());
+  };
+
   return (
     <div className="header">
       <div className="headerLeft">
@@ -20,10 +38,23 @@ function Header() {
       </div>
 
       <div className="headerRight">
-        <IconButton>
-          <NotificationsIcon />
+        <IconButton
+          size="small"
+          aria-controls="profileMenu"
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
+          <Avatar />
         </IconButton>
-        <Avatar />
+        <Menu
+          id="profileMenu"
+          anchorEl={anchorElem}
+          keepMounted
+          open={Boolean(anchorElem)}
+          onClose={() => setAnchorElem(null)}
+        >
+          <MenuItem onClick={handleSignOut}>Logout</MenuItem>
+        </Menu>
       </div>
     </div>
   );

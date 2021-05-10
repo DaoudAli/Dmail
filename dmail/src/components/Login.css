@@ -1,0 +1,23 @@
+.login {
+  background-color: #f2f2f2;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginContainer > h2 {
+  object-fit: contain;
+  height: 200px;
+}
+
+.loginField1 {
+}
+.loginField2 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

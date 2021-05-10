@@ -3,10 +3,13 @@ import "./ComposeMail.css";
 import CloseIcon from "@material-ui/icons/Close";
 import { Button } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeSendMessage } from "../features/mailSlice";
+import { selectCurrentUser } from "../features/mailSlice";
 
 function ComposeMail() {
+  const currentUser = useSelector(selectCurrentUser);
+
   const {
     register,
     handleSubmit,
@@ -14,11 +17,16 @@ function ComposeMail() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    const mail = {
+      sender: currentUser,
+      receiver: data.to,
+      subject: data.subject,
+      message: data.message,
+    };
 
     fetch("http://localhost:5000/send", {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(mail),
       headers: { "Content-Type": "application/json" },
     });
   };

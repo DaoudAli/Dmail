@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import signInAPI from "./apis/loginAPI";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { signIn } from "../features/mailSlice";
+import { setCurrentUser, signIn } from "../features/mailSlice";
 
 function Login() {
   const {
@@ -18,7 +18,9 @@ function Login() {
 
   const onSubmit = async (data) => {
     const signInSuccess = await signInAPI(data);
+
     if (signInSuccess) {
+      dispatch(setCurrentUser(data.username));
       dispatch(signIn());
     }
   };
@@ -41,6 +43,7 @@ function Login() {
               id="outlined-basic"
               label="Password"
               variant="outlined"
+              type="password"
               {...register("password", { required: true })}
             />
           </div>

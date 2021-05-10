@@ -19,7 +19,6 @@ const userSchema = new Schema(
 
 const emailSchema = new Schema(
   {
-    title: String,
     subject: String,
     message: String,
     time: String,

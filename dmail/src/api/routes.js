@@ -10,9 +10,22 @@ router.get("/inbox", (req, res) => {
 });
 
 //Send email
-router.post("/send", (req, res) => {
-  console.log(req.body);
-  //Recieve Email Object
+router.post("/send", async (req, res) => {
+  console.log("hii");
+  const mail = new Email({
+    sender: req.body.sender,
+    receiver: req.body.receiver,
+    subject: req.body.subject,
+    message: req.body.message,
+  });
+  //Check if reciever exists in DB
+  let query = { username: req.body.receiver };
+  await User.find(query, (err, results) => {
+    if (results === []) {
+      res.json({ foundUser: false });
+    }
+  });
+
   //Check for recipent in DB
 });
 
@@ -24,17 +37,16 @@ router.post("/signup", (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  await User.find(
-    { username: username, password: password },
-    async (err, results) => {
-      console.log(results);
-      if (!results.length) {
-        res.json({ userFound: null });
-      } else {
-        res.json({ userFound: true });
-      }
+  let query = { username: username, password: password };
+
+  await User.find(query, async (err, results) => {
+    console.log(results);
+    if (!results.length) {
+      res.json({ userFound: null });
+    } else {
+      res.json({ userFound: true });
     }
-  );
+  });
 });
 
 module.exports = router;

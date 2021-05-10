@@ -17,11 +17,15 @@ function ComposeMail() {
   } = useForm();
 
   const onSubmit = (data) => {
+    let date = new Date();
+    let currentTime = date.getHours() + ":" + date.getMinutes();
+
     const mail = {
       sender: currentUser,
       receiver: data.to,
       subject: data.subject,
       message: data.message,
+      time: currentTime,
     };
 
     fetch("http://localhost:5000/send", {

@@ -42,9 +42,10 @@ function EmailRow({ title, subject, description, time, id }) {
       time: time,
       _id: id,
     };
-    let updatedTrash = trash;
+
+    const updatedTrash = Object.assign([], trash); //Could not refer to same Object(trash which is immutable state) and attempt to assign/alter
     updatedTrash.push(deletedMail);
-    console.log(trash);
+
     dispatch(setTrash(updatedTrash));
     dispatch(setInbox(updatedInbox));
   };

@@ -17,6 +17,7 @@ function ComposeMail() {
   } = useForm();
 
   const onSubmit = (data) => {
+    dispatch(closeSendMessage());
     let date = new Date();
     let currentTime = date.getHours() + ":" + date.getMinutes();
 

@@ -13,13 +13,24 @@ import {
 } from "../features/mailSlice";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  setInbox,
+  setTrash,
+  setStarred,
+  selectInbox,
+  selectTrash,
+  selectStarred,
+} from "../features/mailSlice";
 
 function EmailList() {
   const currentUser = useSelector(selectCurrentUser);
   const currentMailType = useSelector(selectCurrentMailType);
-  const [inbox, setInbox] = useState([]);
-  const [trash, setTrash] = useState([]);
-  const [starred, setStarred] = useState([]);
+  const inbox = useSelector(selectInbox);
+  const trash = useSelector(selectTrash);
+  const starred = useSelector(selectStarred);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch("http://localhost:5000/loadInbox", {
@@ -29,7 +40,7 @@ function EmailList() {
     }).then((response) => {
       response.json().then((inboxData) => {
         console.log(inboxData);
-        setInbox(inboxData.inboxMails);
+        dispatch(setInbox(inboxData.inboxMails));
       });
     });
   }, []);

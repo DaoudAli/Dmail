@@ -22,14 +22,24 @@ function EmailRow({ title, subject, description, time, id }) {
     );
     history.push("/mail");
   };
+
+  //Manages onClick for an emailRow, won't open mail if icons/buttons in the row are clicked
+  const onClickHandler = (e) => {
+    if (e.target.toString() === "[object HTMLDivElement]") {
+      openMail();
+    }
+    if (e.target.toString() === "[object HTMLHeadingElement]") {
+      openMail();
+    }
+  };
   return (
-    <div className="emailRow" onClick={openMail}>
+    <div className="emailRow" onClick={onClickHandler}>
       <div className="emailRowOptions">
         <Checkbox />
         <IconButton>
           <StarBorderOutlinedIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => console.log("hi")}>
           <DeleteOutlineIcon />
         </IconButton>
       </div>

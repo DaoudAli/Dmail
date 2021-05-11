@@ -56,6 +56,8 @@ export const {
   setCurrentUser,
   setShowMailType,
   setInbox,
+  setTrash,
+  setStarred,
 } = mailSlice.actions;
 
 export const selectSendMessageIsOpen = (state) => state.mail.sendMessageIsOpen;

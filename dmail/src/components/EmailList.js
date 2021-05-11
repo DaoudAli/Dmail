@@ -92,6 +92,7 @@ function EmailList() {
                 subject={email.subject}
                 description={email.message}
                 time={email.time}
+                id={email._id}
               />
             );
           })
@@ -107,6 +108,7 @@ function EmailList() {
                 subject={email.subject}
                 description={email.message}
                 time={email.time}
+                id={email._id}
               />
             );
           })
@@ -122,6 +124,7 @@ function EmailList() {
                 subject={email.subject}
                 description={email.message}
                 time={email.time}
+                id={email._id}
               />
             );
           })

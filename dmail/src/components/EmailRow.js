@@ -5,9 +5,17 @@ import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { selectMail } from "../features/mailSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectMail,
+  selectInbox,
+  setInbox,
+  setTrash,
+  selectTrash,
+} from "../features/mailSlice";
 function EmailRow({ title, subject, description, time, id }) {
+  const inbox = useSelector(selectInbox);
+  const trash = useSelector(selectTrash);
   const history = useHistory();
   const dispatch = useDispatch();
   const openMail = () => {
@@ -21,6 +29,24 @@ function EmailRow({ title, subject, description, time, id }) {
       })
     );
     history.push("/mail");
+  };
+
+  const deleteMailHandler = () => {
+    //Delete selected email and update Redux state
+
+    let updatedInbox = inbox.filter((mailToDelete) => mailToDelete._id != id);
+    let deletedMail = {
+      sender: title,
+      subject: subject,
+      message: description,
+      time: time,
+      _id: id,
+    };
+    let updatedTrash = trash;
+    updatedTrash.push(deletedMail);
+    console.log(trash);
+    dispatch(setTrash(updatedTrash));
+    dispatch(setInbox(updatedInbox));
   };
 
   //Manages onClick for an emailRow, won't open mail if icons/buttons in the row are clicked
@@ -39,7 +65,7 @@ function EmailRow({ title, subject, description, time, id }) {
         <IconButton>
           <StarBorderOutlinedIcon />
         </IconButton>
-        <IconButton onClick={() => console.log("hi")}>
+        <IconButton onClick={deleteMailHandler}>
           <DeleteOutlineIcon />
         </IconButton>
       </div>

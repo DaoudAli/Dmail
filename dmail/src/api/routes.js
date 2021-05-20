@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/loadInbox", async (req, res) => {
   const user = req.body.user;
 
-  await Email.find({}, (err, emails) => {
+  await Email.find({ receiver: user }, (err, emails) => {
     let inboxMails = [];
     let trashMails = [];
     let starredMails = [];
@@ -28,6 +28,7 @@ router.post("/loadInbox", async (req, res) => {
 
 //Send email
 router.post("/send", async (req, res) => {
+  console.log("sending...");
   const newMail = new Email({
     sender: req.body.sender,
     receiver: req.body.receiver,
@@ -62,8 +63,6 @@ router.post("/login", async (req, res) => {
   let query = { username: username, password: password };
 
   await User.find(query, async (err, results) => {
-    console.log(results);
-
     if (!results.length) {
       res.json({ userFound: null });
     } else {

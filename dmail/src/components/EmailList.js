@@ -17,7 +17,6 @@ import { useDispatch } from "react-redux";
 import {
   setInbox,
   setTrash,
-  setStarred,
   selectInbox,
   selectTrash,
   selectStarred,
@@ -27,8 +26,8 @@ function EmailList() {
   const currentUser = useSelector(selectCurrentUser);
   const currentMailType = useSelector(selectCurrentMailType);
   const inbox = useSelector(selectInbox);
-  const trash = useSelector(selectTrash);
   const starred = useSelector(selectStarred);
+  const trash = useSelector(selectTrash);
 
   const dispatch = useDispatch();
 
@@ -93,6 +92,7 @@ function EmailList() {
                 description={email.message}
                 time={email.time}
                 id={email._id}
+                starred={email.starred}
               />
             );
           })
@@ -109,6 +109,7 @@ function EmailList() {
                 description={email.message}
                 time={email.time}
                 id={email._id}
+                starred={email.starred}
               />
             );
           })
@@ -131,8 +132,6 @@ function EmailList() {
         ) : (
           <div></div>
         )}
-
-        <EmailRow title="TEST" subject="hi" description="desc" time="1:11pm" />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import "./EmailRow.css";
 import Checkbox from "@material-ui/core/Checkbox";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
+import StarIcon from "@material-ui/icons/Star";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
@@ -12,9 +13,12 @@ import {
   setInbox,
   setTrash,
   selectTrash,
+  setStarred,
+  selectStarred,
 } from "../features/mailSlice";
-function EmailRow({ title, subject, description, time, id }) {
+function EmailRow({ title, subject, description, time, id, starred }) {
   const inbox = useSelector(selectInbox);
+  const starredMails = useSelector(selectStarred);
   const trash = useSelector(selectTrash);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -31,6 +35,33 @@ function EmailRow({ title, subject, description, time, id }) {
     history.push("/mail");
   };
 
+  const starMailHandler = () => {
+    //Star or Un-Star selected email and update Redux state
+
+    //Create deep copies of Inbox/Starred states to modify
+    let updatedInbox = [];
+    let updatedStarred = [];
+    inbox.map((item) => updatedInbox.push(Object.assign({}, item)));
+    starredMails.map((item) => updatedStarred.push(Object.assign({}, item)));
+
+    console.log("Inbox: " + inbox);
+
+    //Update Inbox/Starred
+    updatedInbox.map((email) => {
+      if (email._id == id) {
+        if (email.starred) {
+          email.starred = false;
+          updatedStarred = updatedStarred.filter((item) => item._id != id);
+        } else {
+          email.starred = true;
+          updatedStarred.push(email);
+        }
+      }
+    });
+
+    dispatch(setStarred(updatedStarred));
+    dispatch(setInbox(updatedInbox));
+  };
   const deleteMailHandler = () => {
     //Delete selected email and update Redux state
 
@@ -63,8 +94,9 @@ function EmailRow({ title, subject, description, time, id }) {
     <div className="emailRow" onClick={onClickHandler}>
       <div className="emailRowOptions">
         <Checkbox />
-        <IconButton>
-          <StarBorderOutlinedIcon />
+        <IconButton onClick={starMailHandler}>
+          {console.log(starred)}
+          {starred ? <StarIcon /> : <StarBorderOutlinedIcon />}
         </IconButton>
         <IconButton onClick={deleteMailHandler}>
           <DeleteOutlineIcon />

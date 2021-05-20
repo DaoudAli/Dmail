@@ -14,6 +14,7 @@ import {
   selectStarred,
   selectTrash,
   setShowMailType,
+  setStarred,
 } from "../features/mailSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,6 +24,7 @@ function Sidebar() {
   const trash = useSelector(selectTrash);
   const starred = useSelector(selectStarred);
   const dispatch = useDispatch();
+
   return (
     <div className="sidebar">
       <Button

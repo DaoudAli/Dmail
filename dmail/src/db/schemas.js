@@ -23,8 +23,9 @@ const emailSchema = new Schema(
     message: String,
     time: String,
     sender: String,
-    reciever: String,
+    receiver: String,
     type: String,
+    starred: { type: Boolean, default: false },
   },
   {
     collection: "emails",
